@@ -24,7 +24,8 @@ class MainMenu:
         self.games = [
             {"name": "Змейка", "key": "snake", "description": "Классическая игра змейка"},
             {"name": "Арканоид", "key": "arkanoid", "description": "Разбей все блоки!"},
-            {"name": "Тетрис", "key": "tetris", "description": "Собери линии из фигур"}
+            {"name": "Тетрис", "key": "tetris", "description": "Собери линии из фигур"},
+            {"name": "Pac-Man", "key": "pacman", "description": "Собери точки, избегай призраков!"}
         ]
         
         self.selected_game = None

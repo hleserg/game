@@ -4,6 +4,7 @@ import os
 from games.snake import SnakeGame
 from games.arkanoid import ArkanoidGame
 from games.tetris import TetrisGame
+from games.pacman import PacmanGame
 from ui.menu import MainMenu
 from ui.scores import ScoreManager
 
@@ -80,6 +81,8 @@ class GameCollection:
             self.current_game = ArkanoidGame(self.screen)
         elif game_name == "tetris":
             self.current_game = TetrisGame(self.screen)
+        elif game_name == "pacman":
+            self.current_game = PacmanGame(self.screen)
         
         self.current_state = "game"
     
