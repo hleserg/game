@@ -1,19 +1,28 @@
 from __future__ import annotations
 
 import json
-import os
 from datetime import datetime
+from pathlib import Path
 from typing import Any
+
+import appdirs
 
 
 class ScoreManager:
     def __init__(self) -> None:
-        self.scores_file: str = "scores.json"
+        self.scores_file = self._get_scores_path()
         self.scores: dict[str, list[dict[str, Any]]] = self.load_scores()
+
+    def _get_scores_path(self) -> Path:
+        """Get the path to the scores file using appdirs."""
+        # Use appdirs to get the appropriate data directory
+        data_dir = Path(appdirs.user_data_dir("game-collection", "GameCollection"))
+        data_dir.mkdir(parents=True, exist_ok=True)
+        return data_dir / "scores.json"
 
     def load_scores(self) -> dict[str, list[dict[str, Any]]]:
         """Загрузка рекордов из файла"""
-        if os.path.exists(self.scores_file):
+        if self.scores_file.exists():
             try:
                 with open(self.scores_file, encoding="utf-8") as f:
                     scores: dict[str, list[dict[str, Any]]] = json.load(f)

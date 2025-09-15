@@ -4,19 +4,32 @@ import sys
 
 import pygame
 
-from games.arkanoid import ArkanoidGame
-from games.pacman import PacmanGame
-from games.snake import SnakeGame
-from games.tetris import TetrisGame
-from ui.menu import MainMenu
-from ui.scores import ScoreManager
+from .config import config
+from .games.arkanoid import ArkanoidGame
+from .games.pacman import PacmanGame
+from .games.snake import SnakeGame
+from .games.tetris import TetrisGame
+from .ui.menu import MainMenu
+from .ui.scores import ScoreManager
 
 
 class GameCollection:
     def __init__(self) -> None:
         pygame.init()
-        self.screen = pygame.display.set_mode((1024, 768))
-        pygame.display.set_caption("Коллекция игр")
+
+        # Get display configuration
+        display_config = config.get_display_config()
+        width = display_config.get("width", 1024)
+        height = display_config.get("height", 768)
+        fullscreen = display_config.get("fullscreen", False)
+
+        # Set up display
+        if fullscreen:
+            self.screen = pygame.display.set_mode((width, height), pygame.FULLSCREEN)
+        else:
+            self.screen = pygame.display.set_mode((width, height))
+
+        pygame.display.set_caption("Game Collection")
         self.clock = pygame.time.Clock()
         self.running = True
 
@@ -29,8 +42,11 @@ class GameCollection:
         self.current_state: str = "menu"  # menu, game, scores
 
     def run(self) -> None:
+        display_config = config.get_display_config()
+        fps = display_config.get("fps", 60)
+
         while self.running:
-            dt = self.clock.tick(60) / 1000.0
+            dt = self.clock.tick(fps) / 1000.0
             events = pygame.event.get()
 
             # Обработка глобальных событий
@@ -96,6 +112,11 @@ class GameCollection:
         self.menu.reset_selection()
 
 
-if __name__ == "__main__":
+def main() -> None:
+    """Main entry point for the game collection."""
     game = GameCollection()
     game.run()
+
+
+if __name__ == "__main__":
+    main()

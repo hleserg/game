@@ -1,0 +1,40 @@
+# Временные файлы сборки PyInstaller
+build/
+dist/
+
+# Файлы с рекордами игроков
+scores.json
+
+# Python кэш файлы
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Распределения / упаковка
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# PyInstaller
+*.manifest
+*.spec
+
+# IDE файлы
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Операционная система
+.DS_Store
+Thumbs.db
+
+# Логи
+*.log

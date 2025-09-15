@@ -1,0 +1,20 @@
+# Игнорировать артефакты сборки в статистике языков
+dist/** linguist-vendored
+build/** linguist-vendored
+
+# Пометить документацию как документацию
+docs/** linguist-documentation
+*.tex linguist-documentation
+*.md linguist-documentation
+README.md linguist-documentation
+
+# Дополнительные файлы для игнорирования в статистике
+*.spec linguist-vendored
+*.exe linguist-vendored
+*.log linguist-vendored
+scores.json linguist-vendored
+
+# Файлы конфигурации
+.gitignore linguist-vendored
+.gitattributes linguist-vendored
+
