@@ -10,7 +10,7 @@ from ui.scores import ScoreManager
 class GameCollection:
     def __init__(self):
         pygame.init()
-        self.screen = pygame.display.set_mode((1200, 800))
+        self.screen = pygame.display.set_mode((1024, 768))
         pygame.display.set_caption("Коллекция игр")
         self.clock = pygame.time.Clock()
         self.running = True

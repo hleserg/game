@@ -137,8 +137,11 @@ class MainMenu:
         
         # Кнопки игр
         button_y = 300
+        button_width = 400
+        button_height = 60
+        button_x = (self.width - button_width) // 2  # Центрирование по горизонтали
         for i, game in enumerate(self.games):
-            button_rect = pygame.Rect(400, button_y + i * 100, 400, 60)
+            button_rect = pygame.Rect(button_x, button_y + i * 100, button_width, button_height)
             
             # Цвет кнопки
             if i == self.hovered_button:

@@ -161,7 +161,7 @@ class TetrisGame:
         
         # Позиция фигуры
         self.piece_x = self.grid_width // 2 - 2
-        self.piece_y = 0
+        self.piece_y = -1  # Фигура появляется на клетку выше
         
         # Счет и уровень
         self.score = 0
@@ -332,7 +332,7 @@ class TetrisGame:
                 self.current_piece = self.next_piece
                 self.next_piece = self.get_new_piece()
                 self.piece_x = self.grid_width // 2 - 2
-                self.piece_y = 0
+                self.piece_y = -1  # Фигура появляется на клетку выше
                 
                 # Проверка окончания игры
                 if not self.is_valid_position(self.current_piece, 
