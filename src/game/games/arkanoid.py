@@ -361,12 +361,12 @@ class ArkanoidGame(BaseGame):
             if paddle_rect.colliderect(ball_rect) and ball["speed_y"] > 0:
                 # Угол отскока зависит от места попадания (максимум 100 градусов)
                 hit_pos = (ball["x"] - self.paddle_x) / self.paddle_width
-                angle = (hit_pos - 0.5) * 2  # От -1 до 1
-                angle = max(
-                    -0.87, min(0.87, angle)
+                bounce_angle: float = (hit_pos - 0.5) * 2  # От -1 до 1
+                bounce_angle = max(
+                    -0.87, min(0.87, bounce_angle)
                 )  # Ограничиваем угол до ±100 градусов (sin(100°) ≈ 0.87)
 
-                ball["speed_x"] = angle * self.target_ball_speed
+                ball["speed_x"] = bounce_angle * self.target_ball_speed
                 ball["speed_y"] = -abs(ball["speed_y"])
 
                 # Корректировка позиции мяча

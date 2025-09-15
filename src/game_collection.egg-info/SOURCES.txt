@@ -1,9 +1,14 @@
+LICENSE
+LICENSE_REPORT.md
+MANIFEST.in
 README.md
 pyproject.toml
+docs/QUALITY.md
 src/game/__init__.py
 src/game/__main__.py
 src/game/config.json
 src/game/config.py
+src/game/debug_overlay.py
 src/game/main.py
 src/game/games/__init__.py
 src/game/games/arkanoid.py
@@ -21,8 +26,3 @@ src/game_collection.egg-info/dependency_links.txt
 src/game_collection.egg-info/entry_points.txt
 src/game_collection.egg-info/requires.txt
 src/game_collection.egg-info/top_level.txt
-tests/test_arkanoid_logic.py
-tests/test_pacman_logic.py
-tests/test_snake_logic.py
-tests/test_tetris_logic.py
-tests/test_utils.py

@@ -1,11 +1,11 @@
 # PEP 621 - Project metadata
 [project]
 name = "game-collection"
-version = "1.0.1"
+version = "1.1.0"
 description = "A collection of classic arcade games including Snake, Tetris, Arkanoid, and Pac-Man"
 readme = "README.md"
 requires-python = ">=3.10"
-license = {text = "MIT"}
+license = "MIT"
 authors = [
     {name = "Game Collection Team", email = "game-collection@example.com"}
 ]
@@ -13,7 +13,6 @@ keywords = ["games", "arcade", "pygame", "snake", "tetris", "arkanoid", "pacman"
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: End Users/Desktop",
-    "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.10",
@@ -34,6 +33,9 @@ dev = [
     "pytest-cov>=4.1.0",
     "pyinstaller>=5.13.0",
     "appdirs>=1.4.4",
+    "pre-commit>=3.6.0",
+    "bandit>=1.7.5",
+    "pydocstyle>=6.3.0",
 ]
 
 [project.scripts]
@@ -43,6 +45,7 @@ game-collection = "game.__main__:main"
 Homepage = "https://github.com/example/game-collection"
 Repository = "https://github.com/example/game-collection"
 Issues = "https://github.com/example/game-collection/issues"
+Changelog = "https://github.com/example/game-collection/blob/main/CHANGELOG.md"
 
 [build-system]
 requires = ["setuptools>=61.0", "wheel"]
@@ -116,4 +119,3 @@ strict_equality = true
 [[tool.mypy.overrides]]
 module = "pygame.*"
 ignore_missing_imports = true
-

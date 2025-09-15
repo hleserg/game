@@ -8,7 +8,7 @@
   "controls": {
     "snake": {
       "up": "UP",
-      "down": "DOWN", 
+      "down": "DOWN",
       "left": "LEFT",
       "right": "RIGHT",
       "pause": "SPACE"
@@ -30,7 +30,7 @@
     "pacman": {
       "up": "UP",
       "down": "DOWN",
-      "left": "LEFT", 
+      "left": "LEFT",
       "right": "RIGHT",
       "pause": "SPACE"
     }

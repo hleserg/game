@@ -55,4 +55,3 @@ Workflow `build.yml` также включает тесты:
 - pyinstaller >= 5.13.0
 
 Все зависимости указаны в `requirements.txt`.
-

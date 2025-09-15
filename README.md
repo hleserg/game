@@ -62,7 +62,28 @@ make quality
 
 # Build executable
 make build
+
+# Setup pre-commit hooks
+make pre-commit-install
+
+# Run pre-commit on all files
+make pre-commit-run
 ```
+
+### Debug Features
+
+The game includes a debug overlay that can be toggled during gameplay:
+
+- **F1**: Toggle debug overlay on/off
+- **F2**: Reset FPS history
+- **F3**: Toggle fullscreen mode
+
+The debug overlay shows:
+- Real-time FPS and FPS history
+- Current game and state
+- Mouse position
+- Currently pressed keys
+- Performance statistics
 
 ## Configuration
 
@@ -170,16 +191,8 @@ pyinstaller --onefile --windowed --name GameCollection src/game/__main__.py
 
 ## License
 
-MIT License - see LICENSE file for details.
+MIT License - see [LICENSE](LICENSE) file for details.
 
 ## Changelog
 
-### Version 1.0.1
-
-- Initial release with src/ layout
-- PEP 621 compliant pyproject.toml
-- Entry point support (`game-collection` command)
-- Configuration management with appdirs
-- Comprehensive unit tests (85 tests)
-- Modern Python tooling (Ruff, MyPy, Pytest)
-- CI/CD integration with GitHub Actions
+See [CHANGELOG.md](CHANGELOG.md) for a detailed list of changes.

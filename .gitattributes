@@ -17,4 +17,3 @@ scores.json linguist-vendored
 # Файлы конфигурации
 .gitignore linguist-vendored
 .gitattributes linguist-vendored
-

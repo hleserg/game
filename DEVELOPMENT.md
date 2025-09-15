@@ -114,23 +114,23 @@ class MyGame(BaseGame):
     def handle_events(self, events: List[pygame.event.Event]) -> None:
         # Обработка событий
         pass
-        
+
     def update(self, dt: float) -> None:
         # Обновление логики
         pass
-        
+
     def draw(self) -> None:
         # Отрисовка
         pass
-        
+
     def is_game_over(self) -> bool:
         # Проверка окончания
         return False
-        
+
     def get_score(self) -> int:
         # Возврат счета
         return 0
-        
+
     def get_game_name(self) -> str:
         # Название игры
         return "My Game"
@@ -206,4 +206,3 @@ python -c "import games.snake; print('OK')"
 - [mypy Documentation](https://mypy.readthedocs.io/)
 - [Pygame Documentation](https://www.pygame.org/docs/)
 - [Python Type Hints](https://docs.python.org/3/library/typing.html)
-

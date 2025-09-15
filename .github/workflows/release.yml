@@ -8,24 +8,24 @@ jobs:
   build-windows:
     runs-on: windows-latest
     name: Build Windows Release
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-          
+
       - name: Install dependencies
         run: |
           pip install pygame
           pip install pyinstaller
-          
+
       - name: Build executable
         run: pyinstaller --onefile --windowed --name GameCollection main.py
-        
+
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
@@ -33,24 +33,24 @@ jobs:
           name: Release ${{ github.ref_name }}
           body: |
             🎮 **Коллекция игр v${{ github.ref_name }}**
-            
+
             ## 🎯 Что нового:
             - ✅ Автоматическая сборка Windows exe
             - ✅ Все 4 игры: Змейка, Арканоид, Тетрис, Pac-Man
             - ✅ Современные механики и анимации
             - ✅ Готовый к запуску исполняемый файл
-            
+
             ## 🚀 Установка:
             1. Скачайте `GameCollection.exe`
             2. Запустите файл
             3. Наслаждайтесь игрой!
-            
+
             ## 🎮 Игры:
             - **🐍 Змейка** - с бомбами и золотыми яблоками
-            - **🎯 Арканоид** - с ракетами и дополнительными мячами  
+            - **🎯 Арканоид** - с ракетами и дополнительными мячами
             - **🧩 Тетрис** - с правильной системой уровней
             - **👻 Pac-Man** - с программной генерацией лабиринтов
-            
+
             ---
             *Собрано автоматически с помощью GitHub Actions*
         env:
@@ -59,24 +59,24 @@ jobs:
   build-linux:
     runs-on: ubuntu-latest
     name: Build Linux Release
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-          
+
       - name: Install dependencies
         run: |
           pip install pygame
           pip install pyinstaller
-          
+
       - name: Build executable
         run: pyinstaller --onefile --name GameCollection main.py
-        
+
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
@@ -84,26 +84,25 @@ jobs:
           name: Release ${{ github.ref_name }}
           body: |
             🎮 **Коллекция игр v${{ github.ref_name }}**
-            
+
             ## 🎯 Что нового:
             - ✅ Автоматическая сборка Linux исполняемого файла
             - ✅ Все 4 игры: Змейка, Арканоид, Тетрис, Pac-Man
             - ✅ Современные механики и анимации
             - ✅ Готовый к запуску исполняемый файл
-            
+
             ## 🚀 Установка:
             1. Скачайте `GameCollection`
             2. Сделайте файл исполняемым: `chmod +x GameCollection`
             3. Запустите: `./GameCollection`
-            
+
             ## 🎮 Игры:
             - **🐍 Змейка** - с бомбами и золотыми яблоками
-            - **🎯 Арканоид** - с ракетами и дополнительными мячами  
+            - **🎯 Арканоид** - с ракетами и дополнительными мячами
             - **🧩 Тетрис** - с правильной системой уровней
             - **👻 Pac-Man** - с программной генерацией лабиринтов
-            
+
             ---
             *Собрано автоматически с помощью GitHub Actions*
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-

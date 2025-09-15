@@ -12,7 +12,7 @@ def run_command(cmd: list[str], description: str) -> bool:
     """Запуск команды и возврат статуса успеха"""
     print(f"\n🔍 {description}")
     print(f"Команда: {' '.join(cmd)}")
-    
+
     try:
         result = subprocess.run(cmd, check=True, capture_output=True, text=True)
         print("✅ Успешно!")
@@ -28,14 +28,14 @@ def run_command(cmd: list[str], description: str) -> bool:
         return False
 
 
-def main():
+def main() -> int:
     """Основная функция"""
     print("🚀 Запуск проверки качества кода")
-    
+
     # Переходим в корневую директорию проекта
     project_root = Path(__file__).parent.parent
     print(f"📁 Рабочая директория: {project_root}")
-    
+
     # Команды для проверки
     commands = [
         (["python", "-m", "ruff", "check", "src/"], "Ruff - проверка стиля кода"),
@@ -43,17 +43,17 @@ def main():
         (["python", "-m", "mypy", "src/", "--ignore-missing-imports"], "MyPy - проверка типов"),
         (["python", "-m", "pytest", "tests/", "-v", "--tb=short"], "Pytest - unit-тесты"),
     ]
-    
+
     # Запускаем все команды
     success_count = 0
     for cmd, description in commands:
         if run_command(cmd, description):
             success_count += 1
-    
+
     # Результат
     total_commands = len(commands)
     print(f"\n📊 Результат: {success_count}/{total_commands} проверок прошли успешно")
-    
+
     if success_count == total_commands:
         print("🎉 Все проверки прошли успешно!")
         return 0

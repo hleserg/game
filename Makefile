@@ -51,5 +51,13 @@ run: ## Запустить игру
 check: format lint typecheck test ## Выполнить все проверки
 	@echo "✅ Все проверки пройдены!"
 
-.PHONY: quality
+pre-commit-install: ## Установить pre-commit hooks
+	pre-commit install
 
+pre-commit-run: ## Запустить pre-commit на всех файлах
+	pre-commit run --all-files
+
+pre-commit-update: ## Обновить pre-commit hooks
+	pre-commit autoupdate
+
+.PHONY: quality pre-commit-install pre-commit-run pre-commit-update
