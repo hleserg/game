@@ -25,10 +25,26 @@ pip install -e .
 pip install -e ".[dev]"
 ```
 
-### From PyPI (when published)
+### From PyPI
 
 ```bash
+# Standard installation
 pip install game-collection
+
+# If you have permission issues on Windows:
+pip install game-collection --no-deps --user
+```
+
+### Windows Installation
+
+If you encounter permission errors with pygame on Windows, use the automated installer:
+
+```bash
+# Run the installer
+install_game.bat
+
+# Or manual installation
+pip install game-collection --no-deps --user
 ```
 
 ## Usage
@@ -38,12 +54,23 @@ pip install game-collection
 After installation, you can run the game collection using:
 
 ```bash
-# Using the entry point
+# Using the entry point (if PATH is configured)
 game-collection
 
-# Or using Python module
+# Using Python module (always works)
 python -m game
+
+# Using local file (for development)
+python main.py
 ```
+
+### Troubleshooting
+
+If the `game-collection` command is not found:
+
+1. **Windows**: Run `setup_path.bat` as administrator
+2. **Alternative**: Always use `python -m game`
+3. **See**: [Windows Installation Guide](WINDOWS_INSTALLATION_GUIDE.md) for detailed solutions
 
 ### Development
 
