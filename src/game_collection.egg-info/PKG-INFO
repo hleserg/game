@@ -1,6 +1,6 @@
 Metadata-Version: 2.4
 Name: game-collection
-Version: 1.1.0
+Version: 1.1.1
 Summary: A collection of classic arcade games including Snake, Tetris, Arkanoid, and Pac-Man
 Author-email: Game Collection Team <game-collection@example.com>
 License-Expression: MIT
@@ -104,6 +104,15 @@ make pre-commit-install
 
 # Run pre-commit on all files
 make pre-commit-run
+
+# Check readiness for PyPI publication
+make publish-check
+
+# Publish to TestPyPI (for testing)
+make publish-test
+
+# Publish to PyPI (requires API token)
+make publish
 ```
 
 ### Debug Features

@@ -5,7 +5,7 @@ from typing import Any
 
 import pygame
 
-from games.base import BaseGame
+from .base import BaseGame
 
 
 class TetrisGame(BaseGame):
