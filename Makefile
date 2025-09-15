@@ -60,4 +60,13 @@ pre-commit-run: ## Запустить pre-commit на всех файлах
 pre-commit-update: ## Обновить pre-commit hooks
 	pre-commit autoupdate
 
-.PHONY: quality pre-commit-install pre-commit-run pre-commit-update
+publish-check: ## Проверить готовность к публикации
+	python scripts/publish.py
+
+publish-test: ## Опубликовать на TestPyPI
+	python -m twine upload --repository testpypi dist/game_collection-1.1.0*
+
+publish: ## Опубликовать на PyPI
+	python -m twine upload dist/game_collection-1.1.0*
+
+.PHONY: quality pre-commit-install pre-commit-run pre-commit-update publish-check publish-test publish

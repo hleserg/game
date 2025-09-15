@@ -68,6 +68,15 @@ make pre-commit-install
 
 # Run pre-commit on all files
 make pre-commit-run
+
+# Check readiness for PyPI publication
+make publish-check
+
+# Publish to TestPyPI (for testing)
+make publish-test
+
+# Publish to PyPI (requires API token)
+make publish
 ```
 
 ### Debug Features
