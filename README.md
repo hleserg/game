@@ -1,234 +1,259 @@
-# Game Collection
+# 🎮 Game Collection
 
-A collection of classic arcade games including Snake, Tetris, Arkanoid, and Pac-Man, built with Python and Pygame.
+<div align="center">
 
-## Features
+![Python](https://img.shields.io/badge/Python-3.10+-blue?style=for-the-badge&logo=python&logoColor=white)
+![Pygame](https://img.shields.io/badge/Pygame-2.5+-green?style=for-the-badge&logo=python&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
+![Tests](https://img.shields.io/badge/Tests-85%20passed-brightgreen?style=for-the-badge)
 
-- **Snake**: Classic snake game with growing mechanics
-- **Tetris**: Block-stacking puzzle game with line clearing
-- **Arkanoid**: Breakout-style game with paddle and ball physics
-- **Pac-Man**: Maze navigation game with dots and ghosts
+**Коллекция классических аркадных игр на Python с Pygame**
 
-## Installation
+[🎯 Играть](#-установка) • [📖 Документация](#-документация) • [🐛 Баги](https://github.com/hleserg/game/issues) • [💡 Предложения](https://github.com/hleserg/game/issues)
 
-### From Source
+</div>
+
+## ✨ Особенности
+
+| 🐍 **Snake** | 🧩 **Tetris** | 🎯 **Arkanoid** | 👻 **Pac-Man** |
+|:---:|:---:|:---:|:---:|
+| Классическая змейка с растущей механикой | Блочная головоломка с очисткой линий | Breakout-стиль с физикой мяча | Навигация по лабиринту с точками и призраками |
+| Бомбы и золотые яблоки | Поворот фигур и комбо | Разрушение блоков | Избегание призраков |
+| Анимации взрывов | Система очков | Ракеты и спецэффекты | Режимы призраков |
+
+## 🚀 Установка
+
+### 📦 Из исходного кода
 
 ```bash
-# Clone the repository
-git clone <repository-url>
-cd game-collection
+# Клонируйте репозиторий
+git clone https://github.com/hleserg/game.git
+cd game
 
-# Install in development mode
+# Установите в режиме разработки
 pip install -e .
 
-# Or install with development dependencies
+# Или с зависимостями для разработки
 pip install -e ".[dev]"
 ```
 
-### From PyPI
+### 🎯 Из PyPI
 
 ```bash
-# Standard installation
+# Стандартная установка
 pip install game-collection
 
-# If you have permission issues on Windows:
+# Если проблемы с правами на Windows:
 pip install game-collection --no-deps --user
 ```
 
-### Windows Installation
+### 🪟 Windows
 
-If you encounter permission errors with pygame on Windows, use the automated installer:
+Если возникают проблемы с правами доступа pygame на Windows:
 
 ```bash
-# Run the installer
+# Автоматический установщик
 install_game.bat
 
-# Or manual installation
+# Или ручная установка
 pip install game-collection --no-deps --user
 ```
 
-## Usage
+## 🎮 Использование
 
-### Command Line
+### 💻 Командная строка
 
-After installation, you can run the game collection using:
+После установки запустите коллекцию игр:
 
 ```bash
-# Using the entry point (if PATH is configured)
+# Через точку входа (если PATH настроен)
 game-collection
 
-# Using Python module (always works)
+# Через Python модуль (всегда работает)
 python -m game
 
-# Using local file (for development)
-python main.py
+# Через локальный файл (для разработки)
+python src/game/main.py
 ```
 
-### Troubleshooting
+### 🔧 Устранение неполадок
 
-If the `game-collection` command is not found:
+Если команда `game-collection` не найдена:
 
-1. **Windows**: Run `setup_path.bat` as administrator
-2. **Alternative**: Always use `python -m game`
-3. **See**: [Windows Installation Guide](WINDOWS_INSTALLATION_GUIDE.md) for detailed solutions
+1. **Windows**: Запустите `setup_path.bat` от имени администратора
+2. **Альтернатива**: Всегда используйте `python -m game`
+3. **Подробности**: См. [Руководство по установке Windows](WINDOWS_INSTALLATION_GUIDE.md)
 
-### Development
+### 🛠️ Разработка
 
 ```bash
-# Run the game
-make run
+# Запуск игры
+python -m game
 
-# Run tests
-make test-unit
+# Запуск тестов
+python -m pytest tests/
 
-# Run tests with coverage
-make test-cov
+# Тесты с покрытием
+python -m pytest tests/ --cov=src/game
 
-# Check code quality
-make quality
+# Проверка качества кода
+python -m ruff check src/
+python -m mypy src/
 
-# Build executable
-make build
+# Сборка исполняемого файла
+python build_exe.py
 
-# Setup pre-commit hooks
-make pre-commit-install
+# Установка pre-commit хуков
+pre-commit install
 
-# Run pre-commit on all files
-make pre-commit-run
-
-# Check readiness for PyPI publication
-make publish-check
-
-# Publish to TestPyPI (for testing)
-make publish-test
-
-# Publish to PyPI (requires API token)
-make publish
+# Запуск pre-commit на всех файлах
+pre-commit run --all-files
 ```
 
-### Debug Features
+### 🐛 Отладочные функции
 
-The game includes a debug overlay that can be toggled during gameplay:
+Игра включает отладочный оверлей, который можно переключать во время игры:
 
-- **F1**: Toggle debug overlay on/off
-- **F2**: Reset FPS history
-- **F3**: Toggle fullscreen mode
+- **F1**: Переключить отладочный оверлей вкл/выкл
+- **F2**: Сбросить историю FPS
+- **F3**: Переключить полноэкранный режим
 
-The debug overlay shows:
-- Real-time FPS and FPS history
-- Current game and state
-- Mouse position
-- Currently pressed keys
-- Performance statistics
+Отладочный оверлей показывает:
+- FPS в реальном времени и историю FPS
+- Текущую игру и состояние
+- Позицию мыши
+- Нажатые клавиши
+- Статистику производительности
 
-## Configuration
+## 🎮 Управление
 
-The game uses a configuration system that stores settings in platform-appropriate directories:
+| Клавиша | Действие |
+|:---:|:---|
+| **Стрелки** | Движение во всех играх |
+| **Пробел** | Пауза/Запуск |
+| **ESC** | Выход/Назад |
+| **F1** | Отладочный оверлей |
+| **F2** | Сброс истории FPS |
+| **F3** | Полноэкранный режим |
+
+## ⚙️ Конфигурация
+
+Игра использует систему конфигурации, которая сохраняет настройки в соответствующих директориях:
 
 - **Windows**: `%LOCALAPPDATA%/hleserg/GameCollection/`
 - **macOS**: `~/Library/Application Support/GameCollection/`
 - **Linux**: `~/.local/share/GameCollection/`
 
-### Configuration Files
+### 📁 Файлы конфигурации
 
-- `config.json`: Game settings, controls, audio, and difficulty levels
-- `scores.json`: High scores for all games
+- `config.json`: Настройки игр, управление, аудио и уровни сложности
+- `scores.json`: Рекорды для всех игр
 
-### Configuration Options
+### 🔧 Опции конфигурации
 
-The configuration includes:
+Конфигурация включает:
 
-- **Display**: Resolution, fullscreen mode, FPS
-- **Controls**: Key mappings for each game
-- **Game Settings**: Speed, grid size, lives, etc.
-- **Audio**: Volume levels and enable/disable
-- **Difficulty**: Easy, Normal, Hard presets
+- **Дисплей**: Разрешение, полноэкранный режим, FPS
+- **Управление**: Привязки клавиш для каждой игры
+- **Настройки игр**: Скорость, размер сетки, жизни и т.д.
+- **Аудио**: Уровни громкости и включение/выключение
+- **Сложность**: Легкий, Обычный, Сложный пресеты
 
-## Development
+## 🏗️ Разработка
 
-### Project Structure
+### 📁 Структура проекта
 
 ```
 src/
 ├── game/
 │   ├── __init__.py
-│   ├── __main__.py          # Entry point
-│   ├── main.py              # Main game loop
-│   ├── config.py            # Configuration management
-│   ├── config.json          # Default configuration
-│   ├── games/               # Game implementations
-│   │   ├── base.py          # Base game class
-│   │   ├── logic.py         # Pure game logic functions
-│   │   ├── snake.py         # Snake game
-│   │   ├── tetris.py        # Tetris game
-│   │   ├── arkanoid.py      # Arkanoid game
-│   │   └── pacman.py        # Pac-Man game
-│   └── ui/                  # User interface
-│       ├── menu.py          # Main menu
-│       └── scores.py        # Score management
-tests/                       # Unit tests
-docs/                        # Documentation
+│   ├── __main__.py          # Точка входа
+│   ├── main.py              # Основной игровой цикл
+│   ├── config.py            # Управление конфигурацией
+│   ├── config.json          # Конфигурация по умолчанию
+│   ├── games/               # Реализации игр
+│   │   ├── base.py          # Базовый класс игры
+│   │   ├── logic.py         # Чистые функции игровой логики
+│   │   ├── snake.py         # Игра Змейка
+│   │   ├── tetris.py        # Игра Тетрис
+│   │   ├── arkanoid.py      # Игра Арканоид
+│   │   └── pacman.py        # Игра Pac-Man
+│   └── ui/                  # Пользовательский интерфейс
+│       ├── menu.py          # Главное меню
+│       └── scores.py        # Управление рекордами
+tests/                       # Модульные тесты
+docs/                        # Документация
 ```
 
-### Testing
+### 🧪 Тестирование
 
-The project includes comprehensive unit tests for all game logic:
+Проект включает комплексные модульные тесты для всей игровой логики:
 
 ```bash
-# Run all tests
+# Запуск всех тестов
 python -m pytest tests/
 
-# Run specific test file
+# Запуск конкретного файла тестов
 python -m pytest tests/test_tetris_logic.py
 
-# Run with coverage
+# Запуск с покрытием
 python -m pytest tests/ --cov=src/game/games --cov-report=html
 ```
 
-### Code Quality
+### 🔍 Качество кода
 
-The project uses modern Python tooling:
+Проект использует современные инструменты Python:
 
-- **Ruff**: Fast linting and formatting
-- **MyPy**: Static type checking
-- **Pytest**: Testing framework
-- **Appdirs**: Platform-appropriate data directories
+- **Ruff**: Быстрый линтинг и форматирование
+- **MyPy**: Статическая проверка типов
+- **Pytest**: Фреймворк тестирования
+- **Appdirs**: Платформо-специфичные директории данных
 
-### Building Executables
+### 📦 Сборка исполняемых файлов
 
 ```bash
-# Build with PyInstaller
-make build
+# Сборка с PyInstaller
+python build_exe.py
 
-# Or manually
+# Или вручную
 pyinstaller --onefile --windowed --name GameCollection src/game/__main__.py
 ```
 
-## Requirements
+## 📋 Требования
 
 - Python 3.10+
 - Pygame 2.5.0+
-- Appdirs 1.4.4+ (for data directory management)
+- Appdirs 1.4.4+ (для управления директориями данных)
 
-### Development Requirements
+### 🛠️ Требования для разработки
 
-- Ruff 0.1.0+ (linting and formatting)
-- MyPy 1.8.0+ (type checking)
-- Pytest 7.4.0+ (testing)
-- PyInstaller 5.13.0+ (executable building)
+- Ruff 0.1.0+ (линтинг и форматирование)
+- MyPy 1.8.0+ (проверка типов)
+- Pytest 7.4.0+ (тестирование)
+- PyInstaller 5.13.0+ (сборка исполняемых файлов)
 
-## Contributing
+## 🤝 Вклад в проект
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Run the quality checks: `make quality`
-5. Submit a pull request
+1. Форкните репозиторий
+2. Создайте ветку для функции
+3. Внесите изменения
+4. Запустите проверки качества: `python -m ruff check src/ && python -m mypy src/`
+5. Отправьте pull request
 
-## License
+## 📄 Лицензия
 
-MIT License - see [LICENSE](LICENSE) file for details.
+MIT License - см. файл [LICENSE](LICENSE) для подробностей.
 
-## Changelog
+## 📝 Журнал изменений
 
-See [CHANGELOG.md](CHANGELOG.md) for a detailed list of changes.
+См. [CHANGELOG.md](CHANGELOG.md) для подробного списка изменений.
+
+---
+
+<div align="center">
+
+**Сделано с ❤️ на Python и Pygame**
+
+⭐ Поставьте звезду, если проект вам понравился!
+
+</div>
