@@ -18,8 +18,13 @@ class SoundManager:
         self.music_volume = 0.5
 
         # Initialize pygame mixer if not already done
-        if not pygame.mixer.get_init():
-            pygame.mixer.init(frequency=22050, size=-16, channels=2, buffer=512)
+        try:
+            mixer_init_status = pygame.mixer.get_init()
+            if mixer_init_status is None:
+                pygame.mixer.init(frequency=22050, size=-16, channels=2, buffer=512)
+        except pygame.error:
+            # Fallback initialization if mixer fails
+            pass
 
     def load_sound(self, sound_name: str, sound_path: str) -> bool:
         """

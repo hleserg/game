@@ -8,7 +8,6 @@ __pycache__/
 
 # Distribution / packaging
 .Python
-.pypirc
 build/
 develop-eggs/
 dist/
@@ -163,14 +162,10 @@ cython_debug/
 #  *.iws
 
 # Game-specific files
-scores.json
 *.exe
-*.app
-*.dmg
-
-# Build artifacts
-build_exe.py
-file_version.txt
+*.zip
+*.tar.gz
+*.rar
 
 # IDE files
 .vscode/
@@ -182,7 +177,15 @@ file_version.txt
 # OS files
 .DS_Store
 Thumbs.db
-GameCollection-v1.1.18-Windows-SRS.zip
-GameCollection-v1.1.19-Windows-Connectivity-Fix.zip
-GameCollection-v1.1.19-Source-Code.zip
-GameCollection-v1.1.19-Documentation.zip
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.backup
+
+# Log files
+*.log
+
+# Cursor IDE
+.cursor/

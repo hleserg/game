@@ -24,7 +24,6 @@ classifiers = [
 dependencies = [
     "pygame>=2.5.0",
     "appdirs>=1.4.4",
-    "numpy>=1.24.0",
 ]
 
 [project.optional-dependencies]
@@ -120,4 +119,8 @@ strict_equality = true
 # Игнорируем некоторые модули
 [[tool.mypy.overrides]]
 module = "pygame.*"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "appdirs"
 ignore_missing_imports = true
