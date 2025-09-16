@@ -16,7 +16,7 @@ class TetrisGame(BaseGame):
         # Игровое поле
         self.grid_width = 10
         self.grid_height = 20
-        self.cell_size = 30
+        self.cell_size = 25
 
         # Позиция игрового поля
         self.grid_x = (self.width - self.grid_width * self.cell_size) // 2
@@ -340,43 +340,49 @@ class TetrisGame(BaseGame):
 
     def draw_next_piece(self) -> None:
         """Отрисовка следующей фигуры"""
-        next_x = self.grid_x + self.grid_width * self.cell_size + 20
-        next_y = self.grid_y + 50
+        # Располагаем следующую фигуру справа от игрового поля
+        next_x = self.grid_x + self.grid_width * self.cell_size + 30
+        next_y = self.grid_y + 200  # Опускаем ниже управления
 
         # Заголовок
         next_text = "Следующая:"
         next_surface = self.small_font.render(next_text, True, self.text_color)
         self.screen.blit(next_surface, (next_x, next_y))
 
-        # Фигура
+        # Фигура (уменьшенный размер для экономии места)
         shape = self.get_rotated_shape(self.next_piece)
+        cell_size = 18  # Уменьшенный размер клетки
         for i, row in enumerate(shape):
             for j, cell in enumerate(row):
                 if cell == "#":
-                    cell_x = next_x + j * 20
-                    cell_y = next_y + 30 + i * 20
-                    cell_rect = pygame.Rect(cell_x, cell_y, 20, 20)
+                    cell_x = next_x + j * cell_size
+                    cell_y = next_y + 30 + i * cell_size
+                    cell_rect = pygame.Rect(cell_x, cell_y, cell_size, cell_size)
                     pygame.draw.rect(self.screen, self.colors[self.next_piece["color"]], cell_rect)
                     pygame.draw.rect(self.screen, (255, 255, 255), cell_rect, 1)
 
     def draw_ui(self) -> None:
         """Отрисовка пользовательского интерфейса"""
+        # Левая панель - статистика игры (перемещена выше)
+        left_panel_x = 20
+        left_panel_y = 10  # Перемещено выше
+
         # Счет
         score_text = f"Счет: {self.score}"
         score_surface = self.font.render(score_text, True, self.text_color)
-        self.screen.blit(score_surface, (10, 10))
+        self.screen.blit(score_surface, (left_panel_x, left_panel_y))
 
         # Уровень
         level_text = f"Уровень: {self.level}"
         level_surface = self.font.render(level_text, True, self.text_color)
-        self.screen.blit(level_surface, (10, 50))
+        self.screen.blit(level_surface, (left_panel_x, left_panel_y + 30))  # Уменьшен отступ
 
         # Прогресс до следующего уровня
         required_lines = 7 + self.level  # Следующий уровень требует 7 + текущий_уровень линий
         lines_needed = max(0, required_lines - self.lines_cleared)
         progress_text = f"До уровня {self.level + 1}: {lines_needed}"
         progress_surface = self.small_font.render(progress_text, True, self.text_color)
-        self.screen.blit(progress_surface, (10, 90))
+        self.screen.blit(progress_surface, (left_panel_x, left_panel_y + 60))  # Уменьшен отступ
 
         # Состояние игры
         if self.game_over:
@@ -408,6 +414,15 @@ class TetrisGame(BaseGame):
             space_rect = space_surface.get_rect(center=(self.width // 2, self.height // 2 + 40))
             self.screen.blit(space_surface, space_rect)
 
+        # Правая панель - управление
+        right_panel_x = self.width - 250
+        right_panel_y = 20
+
+        # Заголовок управления
+        controls_title = "Управление:"
+        controls_title_surface = self.small_font.render(controls_title, True, self.text_color)
+        self.screen.blit(controls_title_surface, (right_panel_x, right_panel_y))
+
         # Управление
         controls = [
             "Стрелки - Движение",
@@ -419,7 +434,7 @@ class TetrisGame(BaseGame):
         ]
         for i, control in enumerate(controls):
             control_surface = self.small_font.render(control, True, (150, 150, 150))
-            self.screen.blit(control_surface, (self.width - 200, 10 + i * 25))
+            self.screen.blit(control_surface, (right_panel_x, right_panel_y + 30 + i * 25))
 
     def is_game_over(self) -> bool:
         """Проверка окончания игры"""

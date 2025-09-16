@@ -74,9 +74,15 @@ class MainMenu:
 
         # Проверка наведения на кнопки
         self.hovered_button = None
-        button_y = 300
+        button_y = 280
+        button_width = 400
+        button_height = 50
+        button_spacing = 80
+        button_x = (self.width - button_width) // 2
         for i, _game in enumerate(self.games):
-            button_rect = pygame.Rect(400, button_y + i * 100, 400, 60)
+            button_rect = pygame.Rect(
+                button_x, button_y + i * button_spacing, button_width, button_height
+            )
             if button_rect.collidepoint(mouse_pos):
                 self.hovered_button = i
                 break
@@ -146,12 +152,15 @@ class MainMenu:
         self.screen.blit(subtitle_surface, subtitle_rect)
 
         # Кнопки игр
-        button_y = 300
+        button_y = 280
         button_width = 400
-        button_height = 60
+        button_height = 50
+        button_spacing = 80  # Уменьшенный интервал между кнопками
         button_x = (self.width - button_width) // 2  # Центрирование по горизонтали
         for i, game in enumerate(self.games):
-            button_rect = pygame.Rect(button_x, button_y + i * 100, button_width, button_height)
+            button_rect = pygame.Rect(
+                button_x, button_y + i * button_spacing, button_width, button_height
+            )
 
             # Цвет кнопки
             if i == self.hovered_button:
@@ -193,11 +202,11 @@ class MainMenu:
         scores_text_rect = scores_surface.get_rect(center=scores_rect.center)
         self.screen.blit(scores_surface, scores_text_rect)
 
-        # Инструкции
+        # Инструкции (смещены влево и выше)
         instructions = ["ESC - Выход", "Мышь - Выбор игры"]
         for i, instruction in enumerate(instructions):
             inst_surface = self.score_font.render(instruction, True, (150, 150, 150))
-            self.screen.blit(inst_surface, (50, self.height - 60 + i * 20))
+            self.screen.blit(inst_surface, (20, self.height - 80 + i * 20))
 
     def draw_scores(self) -> None:
         """Отрисовка таблицы рекордов"""

@@ -31,7 +31,7 @@ class ArkanoidGame(BaseGame):
         # Шрифты
         pygame.font.init()
         self.font = pygame.font.Font(None, 36)
-        self.small_font = pygame.font.Font(None, 24)
+        self.small_font = pygame.font.Font(None, 18)
 
         # Инициализация игры
         self.reset_game()
@@ -626,20 +626,20 @@ class ArkanoidGame(BaseGame):
 
     def draw_ui(self) -> None:
         """Отрисовка пользовательского интерфейса"""
-        # Счет
+        # Счет (перемещен выше)
         score_text = f"Счет: {self.score}"
         score_surface = self.font.render(score_text, True, self.text_color)
-        self.screen.blit(score_surface, (10, 10))
+        self.screen.blit(score_surface, (10, 5))
 
-        # Уровень
+        # Уровень (перемещен выше)
         level_text = f"Уровень: {self.level}"
         level_surface = self.font.render(level_text, True, self.text_color)
-        self.screen.blit(level_surface, (10, 50))
+        self.screen.blit(level_surface, (10, 35))
 
-        # Жизни
+        # Жизни (перемещены выше)
         lives_text = f"Жизни: {self.lives}"
         lives_surface = self.font.render(lives_text, True, self.text_color)
-        self.screen.blit(lives_surface, (10, 90))
+        self.screen.blit(lives_surface, (10, 65))
 
         # Информация о ракетах
         if self.rockets:
@@ -695,7 +695,7 @@ class ArkanoidGame(BaseGame):
             self.screen.blit(next_surface, next_rect)
 
         # Управление
-        controls = ["← → - Движение", "Пробел - Пауза/Продолжить", "ESC - Выход"]
+        controls = ["Стрелки - Движение", "Пробел - Пауза/Продолжить", "ESC - Выход"]
         for i, control in enumerate(controls):
             control_surface = self.small_font.render(control, True, (150, 150, 150))
             self.screen.blit(control_surface, (self.width - 200, 10 + i * 25))
