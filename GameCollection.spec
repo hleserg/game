@@ -1,12 +1,23 @@
 # -*- mode: python ; coding: utf-8 -*-
 
 
+import pygame
+import os
+
+# Находим путь к шрифтам pygame
+pygame_fonts_path = os.path.join(os.path.dirname(pygame.__file__), 'freesansbold.ttf')
+
 a = Analysis(
-    ['main.py'],
-    pathex=[],
+    ['src/game/__main__.py'],
+    pathex=['src'],
     binaries=[],
-    datas=[],
-    hiddenimports=[],
+    datas=[
+        ('src/game/config.json', 'game'),
+        ('src/game/games', 'game/games'),
+        ('src/game/ui', 'game/ui'),
+        (pygame_fonts_path, 'pygame')
+    ],
+    hiddenimports=['pygame', 'appdirs', 'pygame.font'],
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
