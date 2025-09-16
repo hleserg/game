@@ -6,6 +6,8 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     import pygame
 
+from ..sound_manager import sound_manager
+
 
 class BaseGame(ABC):
     """Базовый класс для всех игр"""
@@ -14,6 +16,7 @@ class BaseGame(ABC):
         self.screen = screen
         self.width = screen.get_width()
         self.height = screen.get_height()
+        self.sound_manager = sound_manager
 
     @abstractmethod
     def handle_events(self, events: list[pygame.event.Event]) -> None:

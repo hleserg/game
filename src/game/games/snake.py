@@ -234,19 +234,28 @@ class SnakeGame(BaseGame):
             or new_head[1] >= self.grid_height
         ):
             self.game_over = True
+            # Звук столкновения со стеной
+            self.sound_manager.play_sound("snake_crash")
             return
 
         # Проверка столкновения с собой
         if new_head in self.snake:
             self.game_over = True
+            # Звук столкновения с собой
+            self.sound_manager.play_sound("snake_crash")
             return
 
         # Добавление новой головы
         self.snake.insert(0, new_head)
 
+        # Звук движения змейки
+        self.sound_manager.play_sound("snake_move", 0.3)  # Тихий звук движения
+
         # Проверка поедания бомбы
         if self.bomb and new_head == self.bomb:
             self.game_over = True
+            # Звук взрыва
+            self.sound_manager.play_sound("snake_crash")
             return
 
         # Проверка поедания золотого яблока
@@ -255,6 +264,9 @@ class SnakeGame(BaseGame):
             self.apples_eaten += 1
             self.apples_since_bomb += 1
             self.apples_since_golden += 1
+
+            # Звук поедания золотого яблока
+            self.sound_manager.play_sound("snake_eat")
 
             # Анимация +10 очков
             head_x = new_head[0] * self.grid_size + self.grid_size // 2
@@ -293,6 +305,9 @@ class SnakeGame(BaseGame):
             self.apples_eaten += 1
             self.apples_since_bomb += 1
             self.apples_since_golden += 1
+
+            # Звук поедания еды
+            self.sound_manager.play_sound("snake_eat")
 
             # Проверка повышения уровня
             new_level = (self.apples_eaten // 10) + 1
