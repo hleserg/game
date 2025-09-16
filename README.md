@@ -125,7 +125,7 @@ The debug overlay shows:
 
 The game uses a configuration system that stores settings in platform-appropriate directories:
 
-- **Windows**: `%APPDATA%/GameCollection/`
+- **Windows**: `%LOCALAPPDATA%/hleserg/GameCollection/`
 - **macOS**: `~/Library/Application Support/GameCollection/`
 - **Linux**: `~/.local/share/GameCollection/`
 

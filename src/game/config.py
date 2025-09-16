@@ -21,7 +21,7 @@ class Config:
     def _get_config_path(self) -> Path:
         """Get the path to the configuration file."""
         # Use appdirs to get the appropriate config directory
-        config_dir = Path(appdirs.user_config_dir("game-collection", "GameCollection"))
+        config_dir = Path(appdirs.user_config_dir("GameCollection", "hleserg"))
         config_dir.mkdir(parents=True, exist_ok=True)
         return config_dir / "config.json"
 

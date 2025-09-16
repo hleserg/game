@@ -16,7 +16,7 @@ class ScoreManager:
     def _get_scores_path(self) -> Path:
         """Get the path to the scores file using appdirs."""
         # Use appdirs to get the appropriate data directory
-        data_dir = Path(appdirs.user_data_dir("game-collection", "GameCollection"))
+        data_dir = Path(appdirs.user_data_dir("GameCollection", "hleserg"))
         data_dir.mkdir(parents=True, exist_ok=True)
         return data_dir / "scores.json"
 
