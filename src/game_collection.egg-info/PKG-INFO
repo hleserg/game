@@ -1,6 +1,6 @@
 Metadata-Version: 2.4
 Name: game-collection
-Version: 1.1.13
+Version: 1.1.14
 Summary: A collection of classic arcade games including Snake, Tetris, Arkanoid, and Pac-Man
 Author-email: Game Collection Team <game-collection@example.com>
 License-Expression: MIT
@@ -162,7 +162,7 @@ The debug overlay shows:
 
 The game uses a configuration system that stores settings in platform-appropriate directories:
 
-- **Windows**: `%APPDATA%/GameCollection/`
+- **Windows**: `%LOCALAPPDATA%/hleserg/GameCollection/`
 - **macOS**: `~/Library/Application Support/GameCollection/`
 - **Linux**: `~/.local/share/GameCollection/`
 
