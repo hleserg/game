@@ -1,17 +1,17 @@
 # PEP 621 - Project metadata
 [project]
 name = "game-collection"
-version = "1.1.19"
-description = "A collection of classic arcade games including Snake, Tetris, Arkanoid, and Pac-Man"
+version = "1.2.0"
+description = "🎮 Коллекция классических аркадных игр: Snake, Tetris, Arkanoid и Pac-Man на Python с Pygame"
 readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"
 authors = [
-    {name = "Game Collection Team", email = "game-collection@example.com"}
+    {name = "Sergey", email = "hleserg@example.com"}
 ]
-keywords = ["games", "arcade", "pygame", "snake", "tetris", "arkanoid", "pacman"]
+keywords = ["games", "arcade", "pygame", "snake", "tetris", "arkanoid", "pacman", "python", "игры", "аркада", "змейка", "тетрис", "арканоид", "пакман"]
 classifiers = [
-    "Development Status :: 4 - Beta",
+    "Development Status :: 5 - Production/Stable",
     "Intended Audience :: End Users/Desktop",
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
@@ -43,10 +43,10 @@ dev = [
 game-collection = "game.__main__:main"
 
 [project.urls]
-Homepage = "https://github.com/example/game-collection"
-Repository = "https://github.com/example/game-collection"
-Issues = "https://github.com/example/game-collection/issues"
-Changelog = "https://github.com/example/game-collection/blob/main/CHANGELOG.md"
+Homepage = "https://github.com/hleserg/game"
+Repository = "https://github.com/hleserg/game"
+Issues = "https://github.com/hleserg/game/issues"
+Changelog = "https://github.com/hleserg/game/blob/main/CHANGELOG.md"
 
 [build-system]
 requires = ["setuptools>=61.0", "wheel"]
