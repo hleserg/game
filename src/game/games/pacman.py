@@ -115,7 +115,7 @@ class PacmanGame(BaseGame):
         self.power_pellet_timer = 0
 
     def generate_maze(self) -> list[list[int]]:
-        """Генерация случайного лабиринта"""
+        """Генерация случайного лабиринта с проверкой связности"""
         # Создаем базовую структуру лабиринта
         maze = [[1 for _ in range(self.maze_width)] for _ in range(self.maze_height)]
 
@@ -136,7 +136,7 @@ class PacmanGame(BaseGame):
                     maze[y + 1][x] = 2
 
         # Добавляем дополнительные проходы для связности
-        for _ in range(10):  # 10 дополнительных проходов
+        for _ in range(15):  # Увеличиваем количество дополнительных проходов
             x = random.randint(1, self.maze_width - 2)
             y = random.randint(1, self.maze_height - 2)
             if maze[y][x] == 1:  # Если это стена
@@ -158,7 +158,102 @@ class PacmanGame(BaseGame):
             if 0 <= nx < self.maze_width and 0 <= ny < self.maze_height:
                 maze[ny][nx] = 2
 
+        # Проверяем связность и исправляем недоступные области
+        maze = self._ensure_connectivity(maze)
+
         return maze
+
+    def _ensure_connectivity(self, maze: list[list[int]]) -> list[list[int]]:
+        """Обеспечивает связность лабиринта - все точки должны быть доступны"""
+        # Находим все области с точками
+        visited = [[False for _ in range(self.maze_width)] for _ in range(self.maze_height)]
+        areas = []
+
+        for y in range(self.maze_height):
+            for x in range(self.maze_width):
+                if maze[y][x] == 2 and not visited[y][x]:
+                    # Находим область с точками
+                    area = self._flood_fill(maze, x, y, visited)
+                    if area:
+                        areas.append(area)
+
+        # Если есть только одна область - все хорошо
+        if len(areas) <= 1:
+            return maze
+
+        # Если есть несколько областей - соединяем их
+        print(f"Найдено {len(areas)} изолированных областей, соединяем...")
+
+        # Соединяем первую область с остальными
+        main_area = areas[0]
+        for i in range(1, len(areas)):
+            other_area = areas[i]
+            # Находим ближайшие точки между областями
+            min_dist = float("inf")
+            best_path = None
+
+            for x1, y1 in main_area:
+                for x2, y2 in other_area:
+                    dist = abs(x1 - x2) + abs(y1 - y2)
+                    if dist < min_dist:
+                        min_dist = dist
+                        best_path = (x1, y1, x2, y2)
+
+            if best_path:
+                # Создаем путь между областями
+                x1, y1, x2, y2 = best_path
+                self._create_path(maze, x1, y1, x2, y2)
+                # Добавляем точки из второй области в первую
+                main_area.extend(other_area)
+
+        return maze
+
+    def _flood_fill(
+        self, maze: list[list[int]], start_x: int, start_y: int, visited: list[list[bool]]
+    ) -> list[tuple[int, int]]:
+        """Находит все связанные точки в области"""
+        if start_x < 0 or start_x >= self.maze_width or start_y < 0 or start_y >= self.maze_height:
+            return []
+
+        if visited[start_y][start_x] or maze[start_y][start_x] != 2:
+            return []
+
+        visited[start_y][start_x] = True
+        area = [(start_x, start_y)]
+
+        # Проверяем соседние клетки
+        for dx, dy in [(0, 1), (0, -1), (1, 0), (-1, 0)]:
+            nx, ny = start_x + dx, start_y + dy
+            if (
+                0 <= nx < self.maze_width
+                and 0 <= ny < self.maze_height
+                and not visited[ny][nx]
+                and maze[ny][nx] == 2
+            ):
+                area.extend(self._flood_fill(maze, nx, ny, visited))
+
+        return area
+
+    def _create_path(self, maze: list[list[int]], x1: int, y1: int, x2: int, y2: int) -> None:
+        """Создает путь между двумя точками"""
+        # Простой алгоритм - сначала по горизонтали, потом по вертикали
+        current_x, current_y = x1, y1
+
+        # Движемся по горизонтали
+        while current_x != x2:
+            if current_x < x2:
+                current_x += 1
+            else:
+                current_x -= 1
+            maze[current_y][current_x] = 2
+
+        # Движемся по вертикали
+        while current_y != y2:
+            if current_y < y2:
+                current_y += 1
+            else:
+                current_y -= 1
+            maze[current_y][current_x] = 2
 
     def next_level(self) -> None:
         """Переход на следующий уровень"""
