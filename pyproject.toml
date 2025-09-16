@@ -1,7 +1,7 @@
 # PEP 621 - Project metadata
 [project]
 name = "game-collection"
-version = "1.1.15"
+version = "1.1.16"
 description = "A collection of classic arcade games including Snake, Tetris, Arkanoid, and Pac-Man"
 readme = "README.md"
 requires-python = ">=3.10"
