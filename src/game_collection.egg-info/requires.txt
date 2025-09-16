@@ -1,5 +1,6 @@
 pygame>=2.5.0
 appdirs>=1.4.4
+numpy>=1.24.0
 
 [dev]
 ruff>=0.1.0

@@ -1,6 +1,6 @@
 Metadata-Version: 2.4
 Name: game-collection
-Version: 1.1.14
+Version: 1.1.18
 Summary: A collection of classic arcade games including Snake, Tetris, Arkanoid, and Pac-Man
 Author-email: Game Collection Team <game-collection@example.com>
 License-Expression: MIT
@@ -20,9 +20,9 @@ Classifier: Topic :: Games/Entertainment
 Requires-Python: >=3.10
 Description-Content-Type: text/markdown
 License-File: LICENSE
-License-File: LICENSE_REPORT.md
 Requires-Dist: pygame>=2.5.0
 Requires-Dist: appdirs>=1.4.4
+Requires-Dist: numpy>=1.24.0
 Provides-Extra: dev
 Requires-Dist: ruff>=0.1.0; extra == "dev"
 Requires-Dist: mypy>=1.8.0; extra == "dev"

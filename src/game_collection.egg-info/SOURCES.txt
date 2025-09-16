@@ -1,15 +1,16 @@
 LICENSE
-LICENSE_REPORT.md
 MANIFEST.in
 README.md
 pyproject.toml
 docs/QUALITY.md
 src/game/__init__.py
 src/game/__main__.py
+src/game/assets.py
 src/game/config.json
 src/game/config.py
 src/game/debug_overlay.py
 src/game/main.py
+src/game/sound_manager.py
 src/game/games/__init__.py
 src/game/games/arkanoid.py
 src/game/games/base.py
