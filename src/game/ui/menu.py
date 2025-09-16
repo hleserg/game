@@ -222,39 +222,60 @@ class MainMenu:
         back_text_rect = back_surface.get_rect(center=back_rect.center)
         self.screen.blit(back_surface, back_text_rect)
 
-        # Заголовок
+        # Заголовок (уменьшенный размер)
         title_text = "ТАБЛИЦА РЕКОРДОВ"
-        title_surface = self.title_font.render(title_text, True, self.text_color)
-        title_rect = title_surface.get_rect(center=(self.width // 2, 120))
+        title_surface = self.button_font.render(
+            title_text, True, self.text_color
+        )  # Используем button_font вместо title_font
+        title_rect = title_surface.get_rect(center=(self.width // 2, 100))  # Сдвинуто выше
         self.screen.blit(title_surface, title_rect)
 
-        # Рекорды для каждой игры
-        y_offset = 200
-        for game in self.games:
+        # Рекорды для каждой игры - горизонтальное расположение
+        # Разделяем экран на 2x2 сетку для 4 игр
+        games_per_row = 2
+        game_width = (self.width - 60) // games_per_row  # 30px отступы с каждой стороны
+        game_height = 200  # Уменьшена высота панелей
+        start_x = 30
+        start_y = 160  # Сдвинуто выше
+
+        for i, game in enumerate(self.games):
             game_name = game["name"]
             scores = self.score_manager.get_scores(game["key"])
 
+            # Вычисляем позицию в сетке
+            row = i // games_per_row
+            col = i % games_per_row
+            x = start_x + col * game_width
+            y = start_y + row * game_height
+
+            # Рамка для игры
+            game_rect = pygame.Rect(x, y, game_width - 20, game_height - 20)
+            pygame.draw.rect(self.screen, (40, 50, 70), game_rect, border_radius=10)
+            pygame.draw.rect(self.screen, self.accent_color, game_rect, 2, border_radius=10)
+
             # Название игры
             game_title_surface = self.button_font.render(game_name, True, self.accent_color)
-            game_title_rect = game_title_surface.get_rect(center=(self.width // 2, y_offset))
+            game_title_rect = game_title_surface.get_rect(
+                center=(game_rect.centerx, game_rect.top + 25)
+            )
             self.screen.blit(game_title_surface, game_title_rect)
 
             # Рекорды
             if scores:
-                for i, score in enumerate(scores[:5]):  # Топ 5
-                    score_text = f"{i + 1}. {score['player']}: {score['score']}"
+                for j, score in enumerate(scores[:3]):  # Топ 3 вместо топ 5
+                    score_text = f"{j + 1}. {score['player']}: {score['score']}"
                     score_surface = self.score_font.render(score_text, True, self.text_color)
                     score_rect = score_surface.get_rect(
-                        center=(self.width // 2, y_offset + 40 + i * 25)
+                        center=(game_rect.centerx, game_rect.top + 55 + j * 20)  # Уменьшены отступы
                     )
                     self.screen.blit(score_surface, score_rect)
             else:
                 no_scores_text = "Рекордов пока нет"
                 no_scores_surface = self.score_font.render(no_scores_text, True, (150, 150, 150))
-                no_scores_rect = no_scores_surface.get_rect(center=(self.width // 2, y_offset + 40))
+                no_scores_rect = no_scores_surface.get_rect(
+                    center=(game_rect.centerx, game_rect.top + 55)
+                )
                 self.screen.blit(no_scores_surface, no_scores_rect)
-
-            y_offset += 200
 
     def get_selected_game(self) -> str | None:
         """Получить выбранную игру"""
