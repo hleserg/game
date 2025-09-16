@@ -168,6 +168,10 @@ scores.json
 *.app
 *.dmg
 
+# Build artifacts
+build_exe.py
+file_version.txt
+
 # IDE files
 .vscode/
 .idea/
